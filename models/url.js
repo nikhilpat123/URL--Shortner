@@ -13,7 +13,12 @@ const urlSchema = new mongoose.Schema({
     required: true,
   },
 
-    visitHistory: [{ timestamp: { type: Number } }], //its an array which tells us kiyne baje click hua tha
+  visitHistory: [{ timestamp: { type: Number } }], //its an array which tells us kiyne baje click hua tha
+    
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,   //im saying that ill give u  id of type object id which will refer to  a user
+    ref: "user",  //reference to user model
+  }
 },{ timestamps: true }   //created at and updated at
 );
 

@@ -13,9 +13,11 @@ async function handleGenerateNewShortUrl(req, res) {
      await URL.create({   //this will create a new entry in my database
         shortId: shortID,
         redirectURL: body.url,
-        visitHistory: [],
+       visitHistory: [],
+        createdBy: req.user._id,  //req.user is coming from the middleware where we r setting the user in req object
      });
-   return res.json({ id:shortID});
+  //  return res.json({ id:shortID}); earler i was sending json response but now i want to send this response to the frontend
+    return res.render("home", { id: shortID }); //so ill return home page with the short id 
 }
 
 async function handleGetOriginalUrl(req, res) { 
